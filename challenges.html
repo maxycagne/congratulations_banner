@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Congratulations Love</title>
+  <link rel="icon" href="assets/images/tsulogo.png" />
+  <link rel="stylesheet" href="/assets/css/challenge.css">
+  <style>
+   
+    #continue-btn {
+      display: none;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    #continue-btn:hover {
+      background-color: #218838;
+    }
+    
+  </style>
+</head>
+<body>
+
+<form>
+
+  <input type="radio" id="rock-rock" name="rock-paper-scissors">
+  <input type="radio" id="rock-paper" name="rock-paper-scissors">
+  <input type="radio" id="rock-scissors" name="rock-paper-scissors">
+  <input type="radio" id="paper-rock" name="rock-paper-scissors">
+  <input type="radio" id="paper-paper" name="rock-paper-scissors">
+  <input type="radio" id="paper-scissors" name="rock-paper-scissors">
+  <input type="radio" id="scissors-rock" name="rock-paper-scissors">
+  <input type="radio" id="scissors-paper" name="rock-paper-scissors">
+  <input type="radio" id="scissors-scissors" name="rock-paper-scissors">
+
+  <div>
+    <h1>You must win to continue. Goodluck!!</h1>
+
+    <div id="hands">
+      <div class="hand" id="computer-hand">
+        <div class="fist"></div>
+        <div class="finger finger-1"></div>
+        <div class="finger finger-2"></div>
+        <div class="finger finger-3"></div>
+        <div class="finger finger-4"></div>
+        <div class="thumb"></div>
+        <div class="arm"></div>
+      </div>
+
+      <div class="hand" id="user-hand">
+        <div class="fist"></div>
+        <div class="finger finger-1"></div>
+        <div class="finger finger-2"></div>
+        <div class="finger finger-3"></div>
+        <div class="finger finger-4"></div>
+        <div class="thumb"></div>
+        <div class="arm"></div>
+      </div>
+
+      <div id="icons">
+        <div>
+          <label for="rock-rock">✊</label>
+          <label for="paper-rock">✊</label>
+          <label for="scissors-rock">✊</label>
+        </div>
+        <div>
+          <label for="rock-paper">🖐️</label>
+          <label for="paper-paper">🖐️</label>
+          <label for="scissors-paper">🖐️</label>
+        </div>
+        <div>
+          <label for="rock-scissors">✌</label>
+          <label for="paper-scissors">✌</label>
+          <label for="scissors-scissors">✌</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="message">
+    <h2 id="result-text"></h2>
+    <input type="reset" value="Refresh Round" />
+    <a href="index.html" id="continue-btn">Continue</a>
+  </div>
+  
+</form>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const continueBtn = document.getElementById('continue-btn');
+    const resultText = document.getElementById('result-text');
+    const radios = document.querySelectorAll('input[type="radio"][name="rock-paper-scissors"]');
+
+    const loseIds = ['rock-scissors', 'paper-rock', 'scissors-paper'];
+    const winIds = ['rock-paper', 'paper-scissors', 'scissors-rock'];
+    const tieIds = ['rock-rock', 'paper-paper', 'scissors-scissors'];
+
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        const id = radio.id;
+        resultText.textContent = ""; 
+        continueBtn.style.display = "none"; 
+
+        if (winIds.includes(id)) {
+          resultText.textContent = "You Win!";
+          continueBtn.style.display = "inline-block";
+        } else if (loseIds.includes(id)) {
+          resultText.textContent = "Computer Wins!";
+        } else if (tieIds.includes(id)) {
+          resultText.textContent = "You Tied!";
+        }
+      });
+    });
+  });
+</script>
+
+
+</body>
+</html>
